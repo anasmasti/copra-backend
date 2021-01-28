@@ -10,9 +10,10 @@ const categoryRouter = require('./routes/category.js')
 const blogRouter = require('./routes/blog.js')
 const homeRouter = require('./routes/home.js')
 const commentRouter = require('./routes/comment.js')
+const contactRouter = require('./routes/contact.js')
 const mongoose = require('mongoose')
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -48,5 +49,6 @@ app.use('/api/orderdetail', orderdetailRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/blog', blogRouter);
 app.use('/api/comment', commentRouter);
+app.use('/api/contact', contactRouter);
 
-app.listen(port, console.log("app run in port"+ port))
+app.listen(port, console.log("app run in port: "+ port))

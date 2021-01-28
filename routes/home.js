@@ -3,6 +3,6 @@ var router = express.Router()
 
 
 
-router.get('/', (req, res) => res.send('MyShop'))
+router.get('/', (req, res) => res.send('COPRA Backend Work! :)'))
 
 module.exports = router;

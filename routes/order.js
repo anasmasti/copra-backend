@@ -7,7 +7,7 @@ var router = express.Router()
 const nodemailer = require("nodemailer");
 let transporter = nodemailer.createTransport({service: 'gmail',
 auth: {
-    user:'anasmasti10@gmail.com',
+    user:'copra.off@gmail.com',
     pass:'wydad1937'}})
 router.post('/', async (req, res) => {
     const order = new Order({
@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
         res.send(r)
         User.findOne({"_id" : r.user }).then((data)=>{
             let message  = {
-                from: "anasmasti10@gmail.com",
+                from: "copra.off@gmail.com",
                 to: data.email,
                 subject: "Chariot - COPRA",
                 text: "Salut" + data.prenom ,
@@ -121,9 +121,6 @@ router.post('/', async (req, res) => {
         })
         
         
-          
-        
-       
     }).catch(err => {
         res.status(500).send({
             message: err.message || "error creating."
@@ -133,7 +130,18 @@ router.post('/', async (req, res) => {
 
 
 router.get('/:userid', async (req, res) => {
-    await  Order.find({'user' : req.params.userid}).populate('product','name price img_1 _id').populate('user','prenom _id')
+    await  Order.find({'user' : req.params.userid}).sort({'updatedAt': 'desc'}).populate('product','name price coprafood coprapromo copraoriginal nouveaute img_1 _id').populate('user','prenom _id')
+    .then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "error retrieving."
+        });
+    });
+});
+
+router.get('/fetch/:orderid', async (req, res) => {
+    await  Order.findById(req.params.orderid).populate('product','name quantity img_2 _id').populate('user','_id')
     .then(data => {
         res.send(data);
     }).catch(err => {
@@ -148,15 +156,7 @@ router.get('/count/ord/:userid', async (req, res) => {
   return res.send(JSON.stringify(count));
 });
 
-
 router.put('/:Id', async (req, res) => {
-   
-    if(!req.body.content) {
-        return res.status(400).send({
-            message: "content can't be empty"
-        });
-    }
-
     await  Order.findByIdAndUpdate(req.params.Id, {
         product: req.body.product, 
         user: req.body.user, 

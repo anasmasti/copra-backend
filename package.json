@@ -1,13 +1,13 @@
 {
-  "name": "backend_myshop",
+  "name": "copra-backend",
   "version": "1.0.0",
-  "description": "myshop backend",
+  "description": "copra backend",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "myshop"
+    "copra"
   ],
   "author": "anas masti",
   "license": "ISC",

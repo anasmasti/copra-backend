@@ -11,7 +11,7 @@ var secret = "bezkoder-secret-key";
 const nodemailer = require("nodemailer");
 let transporter = nodemailer.createTransport({service: 'gmail',
 auth: {
-    user:'anasmasti10@gmail.com',
+    user:'copra.off@gmail.com',
     pass:'wydad1937'}})
 
 router.post('/register', async (req, res) => {
@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
     .then(data => {
         res.send(data);
         let message  = {
-            from: "anasmasti10@gmail.com",
+            from: "copra.off@gmail.com",
             to: data.email,
             subject: "Inscription - COPRA",
             text: "Bienvenue" + data.prenom ,
@@ -172,7 +172,7 @@ router.post('/resetpssword', async (req, res) => {
          
         if(user){
             let message2  = {
-                from: "anasmasti10@gmail.com",
+                from: "copra.off@gmail.com",
                 to: user.email,
                 subject: "Récupération de mot de passe - COPRA",
                 text: "Salut" + user.prenom ,
@@ -338,7 +338,7 @@ router.put('/password/:Id', async (req, res) => {
         }
          res.send(data);
          let message3  = {
-            from: "anasmasti10@gmail.com",
+            from: "copra.off@gmail.com",
             to: data.email,
             subject: "Mot de passe modifié - COPRA",
             text: "Salut" + data.prenom ,

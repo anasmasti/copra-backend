@@ -7,7 +7,7 @@ var router = express.Router()
 const nodemailer = require("nodemailer");
 let transporter = nodemailer.createTransport({service: 'gmail',
 auth: {
-    user:'anasmasti10@gmail.com',
+    user:'copra.off@gmail.com',
     pass:'wydad1937'}})
 
 
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
             User.findOne({"_id" : r.user }).then((data)=>{
                 console.log(data.email);
                 let message  = {
-                    from: "anasmasti10@gmail.com",
+                    from: "copra.off@gmail.com",
                     to: data.email,
                     subject: "Produit achté - COPRA",
                     text: "Salut" + data.prenom ,
@@ -154,7 +154,16 @@ router.get('/:userid', async (req, res) => {
     });
 });
 
-
+router.get('/fetch/:orderdetailid', async (req, res) => {
+    await  OrderDetail.findById(req.params.orderdetailid).populate('order.product','name -_id')
+    .then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "error retrieving."
+        });
+    });
+});
 
 router.put('/:Id', async (req, res) => {
    

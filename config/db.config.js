@@ -1,4 +1,4 @@
-const url = 'mongodb://localhost:27017/myshop';
+const url = 'mongodb+srv://anasmasti:wydad1937@cluster0.xzcqg.mongodb.net/copra?retryWrites=true&w=majority';
 module.exports = url
 
 
